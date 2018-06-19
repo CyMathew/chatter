@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chatter</title>
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+    
+    body
+    {
+        font-family: 'Open Sans', sans-serif;
+    }
+    
+    #app
+    {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+    
+    .bubble
+    {
+        border-radius: 5px;
+        margin: 10px;
+        max-width: 400px;
+        color: white;
+        box-shadow: 0px 0px 2px black;
+    }
+
+    .bubble p
+    {
+        display: block;
+        padding: 7px;
+    }
+
+    .from
+    {
+        background-color: #0277BD;
+        align-self: flex-end;
+    }
+
+    .to
+    {
+        background-color: #64DD17;
+        align-self: flex-start;
+    }
+
+    #input_panel
+    {
+        position: fixed;
+        left: 0;
+        bottom: 0; 
+        width: 100vw;
+        z-index: 5;
+        background-color: slategray;
+    }
+
+    form
+    {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
+    button
+    {
+        border-radius: 5px;
+        margin: 5px;
+    }
+
+    form input
+    {
+        flex: 5 1 400px;
+        border-radius: 5px;
+        margin: 5px;
+    }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="bubble from">
+            <p>Helllllo</p>
+        </div>
+
+        <div class="bubble to">
+            <p>yo</p>
+        </div>
+
+        <div id="input_panel">
+            <form action="">
+                <input type="text" name="input" id="input" placeholder="Type here">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
