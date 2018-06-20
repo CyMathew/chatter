@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import io from 'socket.io-client';
 
 
 
@@ -9,6 +10,8 @@ import ReactDOM from 'react-dom';
 //         </div>
 
 //         
+
+const socket = io.connect('http://localhost:3000');
 
 const MessageBubble = (props) => ( 
     <div className="bubble from">
