@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import io from 'socket.io-client';
+import socketIOClient from 'socket.io-client';
 
 
 
@@ -11,7 +11,7 @@ import io from 'socket.io-client';
 
 //         
 
-const socket = io.connect('http://localhost:3000');
+const socket = socketIOClient('http://localhost:3400', {reconnect:true});
 
 const MessageBubble = (props) => ( 
     <div className="bubble from">
@@ -55,16 +55,34 @@ class App extends React.Component
         this.state = {
             messageList: []
         };
-        this.onAdd = this.onAdd.bind(this);
+        this.sendMessage = this.sendMessage.bind(this);
     }
 
-    onAdd(message)
+    send()
+    {
+        socket.emit('send', 'this is a message');
+    }
+
+    recieve()
+    {
+        socket.on('send', (message)=> 
+        {
+            let newMessageList = this.state.messageList.concat(message);
+            this.setState(
+            {
+                messageList: newMessageList
+            });
+        });
+    }
+
+    sendMessage(message)
     {
         let newMessageList = this.state.messageList.concat(message);
         this.setState(
             {
                 messageList: newMessageList
             });
+        socket.emit('send', message);
     }
 
     render()
@@ -77,7 +95,7 @@ class App extends React.Component
                         return <MessageBubble message={message} key={index} />
                     })
                 }
-                <InputPanel onAdd={this.onAdd}/>
+                <InputPanel onAdd={this.sendMessage}/>
             </React.Fragment>
             );
     }
