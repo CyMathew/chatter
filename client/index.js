@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import socketIOClient from 'socket.io-client';
+import io from 'socket.io-client';
 
 
 
@@ -11,7 +11,7 @@ import socketIOClient from 'socket.io-client';
 
 //         
 
-const socket = socketIOClient('http://localhost:3400', {reconnect:true});
+var socket;
 
 const MessageBubble = (props) => ( 
     <div className="bubble from">
@@ -56,23 +56,30 @@ class App extends React.Component
             messageList: []
         };
         this.sendMessage = this.sendMessage.bind(this);
+        this.recieveMessage = this.recieveMessage.bind(this);
+
+        socket = io('http://localhost:3400', {reconnect:true});
+        // socket.emit('join', 'a user joined');
+        socket.on('message', this.recieveMessage);
     }
 
-    send()
-    {
-        socket.emit('send', 'this is a message');
-    }
+    // componentDidMount()
+    // {
+    //     setInterval(this.recieve, 1000);
+    // }
 
-    recieve()
+    recieveMessage(message)
     {
-        socket.on('send', (message)=> 
+        let newMessageList = this.state.messageList.concat(message);
+        this.setState(
         {
-            let newMessageList = this.state.messageList.concat(message);
-            this.setState(
-            {
-                messageList: newMessageList
-            });
+            messageList: newMessageList
         });
+    }
+
+    join()
+    {
+        
     }
 
     sendMessage(message)
@@ -82,7 +89,7 @@ class App extends React.Component
             {
                 messageList: newMessageList
             });
-        socket.emit('send', message);
+        socket.send(message);
     }
 
     render()
