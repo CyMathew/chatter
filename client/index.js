@@ -2,20 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
 
-
-
-
-//         <div class="bubble to">
-//             <p>yo</p>
-//         </div>
-
-//         
-
 var socket;
 
 const MessageBubble = (props) => ( 
-    <div className="bubble from">
-        <p>{props.message}</p>
+    <div className={"bubble " + (props.message.from == props.userID? "from":"to")}>
+        <p>{props.message.text}</p>
     </div>
 );
 
@@ -55,17 +46,22 @@ class App extends React.Component
         this.state = {
             messageList: []
         };
+
+        //Setup function references
         this.sendMessage = this.sendMessage.bind(this);
         this.recieveMessage = this.recieveMessage.bind(this);
+        // this.askUsername = this.askUsername.bind(this);
 
         socket = io('http://localhost:3400', {reconnect:true});
-        // socket.emit('join', 'a user joined');
+        socket.on('clientID', (id) => {
+            this.userID = id;
+                } );
         socket.on('message', this.recieveMessage);
     }
 
     // componentDidMount()
     // {
-    //     setInterval(this.recieve, 1000);
+    //     this.askUsername();
     // }
 
     recieveMessage(message)
@@ -82,14 +78,22 @@ class App extends React.Component
         
     }
 
-    sendMessage(message)
+    sendMessage(text)
     {
-        let newMessageList = this.state.messageList.concat(message);
-        this.setState(
-            {
-                messageList: newMessageList
-            });
-        socket.send(message);
+        if(text)
+        {
+            let message = {
+                text: text,
+                from: this.userID
+            };
+
+            let newMessageList = this.state.messageList.concat(message);
+            this.setState(
+                {
+                    messageList: newMessageList
+                });
+            socket.send(message);
+        }
     }
 
     render()
@@ -99,7 +103,7 @@ class App extends React.Component
                 {
                     this.state.messageList.map((message, index) => 
                     {
-                        return <MessageBubble message={message} key={index} />
+                        return <MessageBubble message={message} userID={this.userID} key={index} />
                     })
                 }
                 <InputPanel onAdd={this.sendMessage}/>
