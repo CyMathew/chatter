@@ -1,69 +1,134 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
     
-    body
-    {
-        font-family: 'Open Sans', sans-serif;
-    }
+body
+{
+    font-family: 'Open Sans', sans-serif;
+}
+
+#app
+{
     
-    #app
-    {
-        display: flex;
-        flex-flow: column nowrap;
-    }
-    
-    .bubble
-    {
-        border-radius: 5px;
-        margin: 5px;
-        max-width: 400px;
-        color: white;
-        box-shadow: 0px 0px 2px black;
-    }
+}
 
-    .bubble p
-    {
-        display: block;
-        padding: 5px 10px;
-        margin: 0;
-    }
 
-    .from
-    {
-        background-color: #0277BD;
-        align-self: flex-end;
-    }
+.messageGroup
+{
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 3px 5px 5px 5px;
+}
 
-    .to
-    {
-        background-color: #64DD17;
-        align-self: flex-start;
-    }
+.messageGroup:nth-child(2n)
+{
+    background-color: whitesmoke;
+}
 
-    #input_panel
-    {
-        position: fixed;
-        left: 0;
-        bottom: 0; 
-        width: 100vw;
-        z-index: 5;
-        background-color: slategray;
-    }
+h3
+{
+    font-size: 12px;
+    display: block;
+    margin: 0;
+    margin-bottom: 2px;
+    padding: 0;
+    font-weight: 400;
+    color: gray;
+}
 
-    form
-    {
-        display: flex;
-        flex-flow: row nowrap;
-    }
+.bubble
+{
+    border-radius: 5px;
+    margin: 5px;
+    margin-bottom: 0px;
+    max-width: 400px;
+    color: white;
+    border: 0;
+}
 
-    button
-    {
-        border-radius: 5px;
-        margin: 5px;
-    }
+.bubble p
+{
+    display: block;
+    padding: 5px 10px;
+    margin: 0;
+}
 
-    form input
-    {
-        flex: 5 1 400px;
-        border-radius: 5px;
-        margin: 5px;
-    }
+.messageGroup .bubble:last-child
+{
+    margin-bottom: 7px;
+}
+
+.from *
+{
+    align-self: flex-end;
+}
+
+.from .bubble
+{
+    background-color: #0277BD;
+}
+
+.to *
+{
+    align-self: flex-start;
+}
+
+.to .bubble
+{
+    background-color: #64DD17;
+}
+
+#modal
+{
+    margin: auto;
+    max-width: 300px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+#modal > form
+{
+    margin: 20px 30px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#modal > form button
+{
+    align-self: flex-end;
+    width: 75px;
+    margin: 10px 0px;
+    background-color: tomato;
+    color:white;
+    border: 0px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 1px gray;
+}
+
+#input_panel
+{
+    position: fixed;
+    left: 0;
+    bottom: 0; 
+    width: 100vw;
+    z-index: 5;
+    background-color: slategray;
+}
+
+form
+{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+button
+{
+    border-radius: 5px;
+    margin: 5px;
+}
+
+form input
+{
+    flex: 5 1 400px;
+    border-radius: 5px;
+    margin: 5px;
+}

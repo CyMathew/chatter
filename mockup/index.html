@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+    
+        body
+        {
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        #app
+        {
+            
+        }
+
+
+        .messageGroup
+        {
+            display: flex;
+            flex-flow: column nowrap;
+            padding: 3px 5px 5px 5px;
+        }
+
+        .messageGroup:nth-child(2n)
+        {
+            background-color: whitesmoke;
+        }
+
+        h3
+        {
+            font-size: 12px;
+            display: block;
+            margin: 0;
+            margin-bottom: 2px;
+            padding: 0;
+            font-weight: 400;
+            color: gray;
+        }
+        
+        .bubble
+        {
+            border-radius: 5px;
+            margin: 5px;
+            margin-bottom: 0px;
+            max-width: 400px;
+            color: white;
+            box-shadow: 0px 0px 2px black;
+        }
+
+        .bubble p
+        {
+            display: block;
+            padding: 5px 10px;
+            margin: 0;
+        }
+
+        .messageGroup .bubble:last-child
+        {
+            margin-bottom: 7px;
+        }
+
+        .from *
+        {
+            align-self: flex-end;
+        }
+
+        .from .bubble
+        {
+            background-color: #0277BD;
+        }
+
+        .to *
+        {
+            align-self: flex-start;
+        }
+
+        .to .bubble
+        {
+            background-color: #64DD17;
+        }
+
+        #modal
+        {
+            margin: auto;
+            max-width: 300px;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+        #modal > form
+        {
+            margin: 20px 30px;
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+        #modal > form button
+        {
+            align-self: flex-end;
+            width: 75px;
+            margin: 10px 0px;
+            background-color: tomato;
+            color:white;
+            border: 0px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 2px 1px gray;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="messageGroup from">
+        <h3>Someguy</h3>
+        <div class="bubble">
+            <p>Hdifj</p>
+        </div>
+    </div>
+
+    <div class="messageGroup to">
+        <h3>otherguy</h3>
+        <div class="bubble">
+            <p>aosdifjds</p>
+        </div>
+        <div class="bubble">
+            <p>aosdifjds</p>
+        </div>
+        <div class="bubble">
+            <p>aosdifjds</p>
+        </div>
+        <div class="bubble">
+            <p>aosdifjds</p>
+        </div>
+    </div>
+
+    <div class="messageGroup from">
+        <h3>someguy</h3>
+            <div class="bubble">
+                <p>Hdifj</p>
+            </div>
+    </div>
+
+    <div class="messageGroup from">
+        <h3>anon</h3>
+            <div class="bubble">
+                <p>Hdifj</p>
+            </div>
+        </div>
+
+
+    <div id="modal">
+        <form>
+            <p>Please enter a username</p>
+            <input type="text" name="username" id="username">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
