@@ -17,8 +17,8 @@ app.get('/', (req, res)=>{
 //Socket connection
 io.on('connection', (socket) => 
 {
-    console.log("User connected");
     socket.emit('clientID', socket.id);
+    console.log("User recognized");
 
     // socket.on('message', (message) => 
     // {
@@ -27,6 +27,14 @@ io.on('connection', (socket) =>
 
     socket.on('message', (message) => {
         socket.broadcast.emit('message', message);
+    });
+
+    socket.on('named', (username) =>
+    {
+        message = username + " has joined";
+        console.log(message);
+        socket.broadcast.emit('server-info', message);
+        
     })
 
     socket.on('disconnect', () => console.log('User disconnected'));
